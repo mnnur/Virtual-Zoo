@@ -9,7 +9,7 @@ public class Giraffe : MonoBehaviour
     AnimalState animalState = AnimalState.IDLE;
     Transform lookAt;
     Transform moveTo;
-    int hunger = 100;
+    public int hunger = 80;
     int moveSpeed = 10;
     int runSpeed = 20;
     float randomWalkRadius = 5f;
@@ -47,7 +47,6 @@ public class Giraffe : MonoBehaviour
         switch (animalState)
         {
             case AnimalState.IDLE:
-                anim.Stop();
                 if (lookAt != null)
                 {
                     RotateToTarget(lookAt);
@@ -73,11 +72,7 @@ public class Giraffe : MonoBehaviour
                     float distanceToTarget = Vector3.Distance(transform.position, moveTo.position);
                     if (distanceToTarget > stopDistance)
                     {
-                        anim.Play();
                         MoveToTarget(moveTo); // Call the MoveToTarget function
-                    }
-                    else{
-                        anim.Stop();
                     }
                 }
                 else
@@ -132,6 +127,12 @@ public class Giraffe : MonoBehaviour
     void updateAnimalState(AnimalState animalState)
     {
         this.animalState = animalState;
+        if(animalState == AnimalState.WALKING){
+            anim.Play();
+        }
+        else if(animalState == AnimalState.IDLE){
+            anim.Stop();
+        }
     }
 
     void OnTriggerEnter(Collider other)
