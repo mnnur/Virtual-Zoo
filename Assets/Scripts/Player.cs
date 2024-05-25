@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public XRDirectInteractor leftHandInteractor;  // Reference to the left hand interactor
     [SerializeField] InputActionReference interactAction;
     public bool holdingFood = false;
-    bool animalInRange = false;
+    GameObject holdedFood;
 
     void Start()
     {
@@ -18,11 +18,13 @@ public class Player : MonoBehaviour
         if (rightHandInteractor != null)
         {
             rightHandInteractor.selectEntered.AddListener(OnSelectEnteredRightHand);
+            rightHandInteractor.selectExited.AddListener(OnSelectExitedRightHand);
         }
 
         if (leftHandInteractor != null)
         {
             leftHandInteractor.selectEntered.AddListener(OnSelectEnteredLeftHand);
+            leftHandInteractor.selectExited.AddListener(OnSelectExitedLeftHand);
         }
     }
 
@@ -36,32 +38,26 @@ public class Player : MonoBehaviour
         holdingFood = IsFood(args.interactableObject.transform);
     }
 
+    private void OnSelectExitedRightHand(SelectExitEventArgs args){
+        if(IsFood(args.interactableObject.transform)){
+            holdingFood = false;
+        }
+    }
+
     private void OnSelectEnteredLeftHand(SelectEnterEventArgs args)
     {
         holdingFood = IsFood(args.interactableObject.transform);
+    }
+
+    private void OnSelectExitedLeftHand(SelectExitEventArgs args){
+        if(IsFood(args.interactableObject.transform)){
+            holdingFood = false;
+        }
     }
 
     // Function to check if the grabbed object has a "Food" tag (adjust as needed)
     bool IsFood(Transform grabbedObject)
     {
         return grabbedObject.CompareTag("Food"); // Replace "Food" with your actual tag
-    }
-
-    void OnTriggerEnter(Collider other) //This checks if the player collides with this interactable's collider
-    {
-        if (other.tag == "Animal" && holdingFood)
-        {
-            Debug.Log("You can interact feed this Animal using VR controls.");
-            animalInRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other) //This checks if the player leaves the collider of the interactable.
-    {
-        if (other.tag == "Animal"  && holdingFood)
-        {
-            Debug.Log("Out of range to feed this Animal.");
-            animalInRange = false;
-        }
     }
 }

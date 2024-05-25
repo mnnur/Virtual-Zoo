@@ -2475,6 +2475,7 @@ GameObject:
   - component: {fileID: 909657448}
   - component: {fileID: 909657447}
   - component: {fileID: 909657446}
+  - component: {fileID: 909657459}
   - component: {fileID: 909657456}
   - component: {fileID: 909657457}
   - component: {fileID: 909657458}
@@ -2780,6 +2781,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &909657459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909657445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40ca1047daab5749a62468137c32867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactables: []
+  lowestDistance: 0
 --- !u!1001 &911448577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2845,6 +2860,9 @@ PrefabInstance:
       addedObject: {fileID: 911448581}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 911448588}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 911448580}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
       insertIndex: -1
@@ -2855,9 +2873,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 911448583}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 911448585}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 911448586}
@@ -2887,6 +2902,7 @@ MonoBehaviour:
     m_Bits: 64
   range: 50
   hunger: 40
+  sightRange: 5
 --- !u!64 &911448580
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2969,31 +2985,10 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 6
-  m_Center: {x: 0, y: 4, z: 0}
---- !u!65 &911448585
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911448578}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 7, z: 3}
-  m_Center: {x: 0, y: 2.15, z: -0.8}
+  m_Radius: 5
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!195 &911448586
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3016,6 +3011,24 @@ NavMeshAgent:
   m_BaseOffset: 1.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &911448588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911448578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740970ed62f2aff45b0dab7030e945b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromPlayer: 0
+  isClosestInteractable: 0
+  cooldownTime: 0.5
+  player: {fileID: 909657445}
+  interactText: {fileID: 0}
+  interactAction: {fileID: 4383594424666638698, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &941134643
 GameObject:
   m_ObjectHideFlags: 0
