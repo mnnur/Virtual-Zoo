@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Giraffe : MonoBehaviour
 {
-    Animation anim;
+    Animator anim;
     AnimalState animalState = AnimalState.IDLE;
 
     Player playerScript;
@@ -35,7 +35,7 @@ public class Giraffe : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Player>();
@@ -119,7 +119,7 @@ public class Giraffe : MonoBehaviour
             anim.Play("animation_walk");
         }
         else if(animalState == AnimalState.IDLE){
-            anim.Stop("animation_walk");
+            anim.StopPlayback();
         }
     }
 }

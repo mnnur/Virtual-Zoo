@@ -2758,7 +2758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandInteractor: {fileID: 192223186}
   leftHandInteractor: {fileID: 959153051}
-  interactAction: {fileID: 0}
+  interactAction: {fileID: 4383594424666638698, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   holdingFood: 0
 --- !u!135 &909657458
 SphereCollider:
@@ -2869,13 +2869,13 @@ PrefabInstance:
       addedObject: {fileID: 911448579}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 911448582}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 911448583}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 911448586}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 911448589}
   m_SourcePrefab: {fileID: 100100000, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
 --- !u!1 &911448578 stripped
 GameObject:
@@ -2952,22 +2952,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!111 &911448582
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911448578}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: -2854723295901154239, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
-  m_Animations:
-  - {fileID: -2854723295901154239, guid: 0e59ea8ed9936f54ea8ab5491cc7caf8, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!135 &911448583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3029,6 +3013,27 @@ MonoBehaviour:
   player: {fileID: 909657445}
   interactText: {fileID: 0}
   interactAction: {fileID: 4383594424666638698, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!95 &911448589
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911448578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58c4400673a066e439055810ceb8ea0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &941134643
 GameObject:
   m_ObjectHideFlags: 0

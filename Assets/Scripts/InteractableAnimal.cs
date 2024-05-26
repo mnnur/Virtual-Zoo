@@ -19,11 +19,15 @@ public class InteractableAnimal : MonoBehaviour
     Player playerScript;
     [SerializeField] GameObject interactText; //Text that appears on the UI when this is the closest interactable.
     [SerializeField] InputActionReference interactAction; // Reference to the XR Interaction
+    [SerializeField] Giraffe giraffe;
     InteractableAnimalDistanceList intDistList; //Reference to the script on player that keeps track of the lowest distance from player between interactables.
 
 
     public virtual void Interact() //This function is meant to be overwritten depending on the interactable object.
     {
+        Destroy(playerScript.holdedFood);
+        playerScript.holdingFood = false;
+        giraffe.hunger += 50;
         Debug.Log("You interacted with " + gameObject.name + "!");
     }
 

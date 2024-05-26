@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public XRDirectInteractor leftHandInteractor;  // Reference to the left hand interactor
     [SerializeField] InputActionReference interactAction;
     public bool holdingFood = false;
-    GameObject holdedFood;
+    public GameObject holdedFood;
 
     void Start()
     {
@@ -35,28 +35,34 @@ public class Player : MonoBehaviour
 
     private void OnSelectEnteredRightHand(SelectEnterEventArgs args)
     {
-        holdingFood = IsFood(args.interactableObject.transform);
+        GameObject selected = rightHandInteractor.GetOldestInteractableSelected().transform.gameObject;
+        if(IsFood(selected)){
+            holdingFood = true;
+            holdedFood = selected;
+        }
     }
 
     private void OnSelectExitedRightHand(SelectExitEventArgs args){
-        if(IsFood(args.interactableObject.transform)){
-            holdingFood = false;
-        }
+        holdingFood = false;
+        holdedFood = null;
     }
 
     private void OnSelectEnteredLeftHand(SelectEnterEventArgs args)
     {
-        holdingFood = IsFood(args.interactableObject.transform);
-    }
-
-    private void OnSelectExitedLeftHand(SelectExitEventArgs args){
-        if(IsFood(args.interactableObject.transform)){
-            holdingFood = false;
+        GameObject selected = leftHandInteractor.GetOldestInteractableSelected().transform.gameObject;
+        if(IsFood(selected)){
+            holdingFood = true;
+            holdedFood = selected;
         }
     }
 
+    private void OnSelectExitedLeftHand(SelectExitEventArgs args){
+        holdingFood = false;
+        holdedFood = null;
+    }
+
     // Function to check if the grabbed object has a "Food" tag (adjust as needed)
-    bool IsFood(Transform grabbedObject)
+    bool IsFood(GameObject grabbedObject)
     {
         return grabbedObject.CompareTag("Food"); // Replace "Food" with your actual tag
     }
