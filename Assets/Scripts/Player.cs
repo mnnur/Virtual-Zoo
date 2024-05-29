@@ -14,56 +14,28 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        // Subscribe to selectEntered events
-        if (rightHandInteractor != null)
-        {
-            rightHandInteractor.selectEntered.AddListener(OnSelectEnteredRightHand);
-            rightHandInteractor.selectExited.AddListener(OnSelectExitedRightHand);
-        }
 
-        if (leftHandInteractor != null)
-        {
-            leftHandInteractor.selectEntered.AddListener(OnSelectEnteredLeftHand);
-            leftHandInteractor.selectExited.AddListener(OnSelectExitedLeftHand);
-        }
     }
 
     void Update()
     {
-        holdingFood = false; // Reset holdingFood state each frame
-    }
-
-    private void OnSelectEnteredRightHand(SelectEnterEventArgs args)
-    {
-        GameObject selected = rightHandInteractor.GetOldestInteractableSelected().transform.gameObject;
-        if(IsFood(selected)){
+        if (rightHandInteractor.selectTarget.tag == "Food")
+        {
             holdingFood = true;
-            holdedFood = selected;
+            holdedFood = rightHandInteractor.selectTarget.transform.gameObject;
         }
-    }
-
-    private void OnSelectExitedRightHand(SelectExitEventArgs args){
-        holdingFood = false;
-        holdedFood = null;
-    }
-
-    private void OnSelectEnteredLeftHand(SelectEnterEventArgs args)
-    {
-        GameObject selected = leftHandInteractor.GetOldestInteractableSelected().transform.gameObject;
-        if(IsFood(selected)){
+        else if (leftHandInteractor.selectTarget.tag == "Food")
+        {
             holdingFood = true;
-            holdedFood = selected;
+            holdedFood = leftHandInteractor.selectTarget.transform.gameObject;
         }
-    }
-
-    private void OnSelectExitedLeftHand(SelectExitEventArgs args){
-        holdingFood = false;
-        holdedFood = null;
-    }
-
-    // Function to check if the grabbed object has a "Food" tag (adjust as needed)
-    bool IsFood(GameObject grabbedObject)
-    {
-        return grabbedObject.CompareTag("Food"); // Replace "Food" with your actual tag
+        else
+        {
+            if (rightHandInteractor.selectTarget.tag != "Food" && leftHandInteractor.selectTarget.tag != "Food")
+            {
+                holdingFood = false;
+                holdedFood = null;
+            }
+        }
     }
 }

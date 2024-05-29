@@ -1,4 +1,4 @@
-using UnityEngine;
+        using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -47,7 +47,7 @@ public class InteractableAnimal : MonoBehaviour
         if (playerIsCloseEnoughToInteractWithThis) //If the player is close enough to be able to interact with this object...
         {
             distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position); //...we need to calculate how far the interactable is from the player.
-            if (intDistList.lowestDistance == 0f) //If the lowest distance among interactables is 0...
+            if (intDistList.lowestDistance == 0f && playerScript.holdingFood) //If the lowest distance among interactables is 0...
             {
                 if (!isClosestInteractable) //...and this is not already marked as the closest interactable...
                 {
