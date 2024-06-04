@@ -10,58 +10,32 @@ public class Player : MonoBehaviour
     public XRDirectInteractor leftHandInteractor;  // Reference to the left hand interactor
     [SerializeField] InputActionReference interactAction;
     public bool holdingFood = false;
-    bool animalInRange = false;
+    public GameObject holdedFood;
 
     void Start()
     {
-        // Subscribe to selectEntered events
-        if (rightHandInteractor != null)
-        {
-            rightHandInteractor.selectEntered.AddListener(OnSelectEnteredRightHand);
-        }
 
-        if (leftHandInteractor != null)
-        {
-            leftHandInteractor.selectEntered.AddListener(OnSelectEnteredLeftHand);
-        }
     }
 
     void Update()
     {
-        holdingFood = false; // Reset holdingFood state each frame
-    }
-
-    private void OnSelectEnteredRightHand(SelectEnterEventArgs args)
-    {
-        holdingFood = IsFood(args.interactableObject.transform);
-    }
-
-    private void OnSelectEnteredLeftHand(SelectEnterEventArgs args)
-    {
-        holdingFood = IsFood(args.interactableObject.transform);
-    }
-
-    // Function to check if the grabbed object has a "Food" tag (adjust as needed)
-    bool IsFood(Transform grabbedObject)
-    {
-        return grabbedObject.CompareTag("Food"); // Replace "Food" with your actual tag
-    }
-
-    void OnTriggerEnter(Collider other) //This checks if the player collides with this interactable's collider
-    {
-        if (other.tag == "Animal" && holdingFood)
+        if (rightHandInteractor.selectTarget.tag == "Food")
         {
-            Debug.Log("You can interact feed this Animal using VR controls.");
-            animalInRange = true;
+            holdingFood = true;
+            holdedFood = rightHandInteractor.selectTarget.transform.gameObject;
         }
-    }
-
-    void OnTriggerExit(Collider other) //This checks if the player leaves the collider of the interactable.
-    {
-        if (other.tag == "Animal"  && holdingFood)
+        else if (leftHandInteractor.selectTarget.tag == "Food")
         {
-            Debug.Log("Out of range to feed this Animal.");
-            animalInRange = false;
+            holdingFood = true;
+            holdedFood = leftHandInteractor.selectTarget.transform.gameObject;
+        }
+        else
+        {
+            if (rightHandInteractor.selectTarget.tag != "Food" && leftHandInteractor.selectTarget.tag != "Food")
+            {
+                holdingFood = false;
+                holdedFood = null;
+            }
         }
     }
 }
