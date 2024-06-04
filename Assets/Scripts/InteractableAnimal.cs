@@ -1,4 +1,4 @@
-        using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -19,7 +19,7 @@ public class InteractableAnimal : MonoBehaviour
     Player playerScript;
     [SerializeField] GameObject interactText; //Text that appears on the UI when this is the closest interactable.
     [SerializeField] InputActionReference interactAction; // Reference to the XR Interaction
-    [SerializeField] Giraffe giraffe;
+    [SerializeField] Animal animal;
     InteractableAnimalDistanceList intDistList; //Reference to the script on player that keeps track of the lowest distance from player between interactables.
 
 
@@ -27,7 +27,9 @@ public class InteractableAnimal : MonoBehaviour
     {
         Destroy(playerScript.holdedFood);
         playerScript.holdingFood = false;
-        giraffe.hunger += 50;
+        animal.hunger += playerScript.holdedFood.GetComponent<Food>().satiety;
+        animal.animalAudio.Stop();
+        animal.animalAudio.PlayOneShot(animal.animalHappy);
         Debug.Log("You interacted with " + gameObject.name + "!");
     }
 

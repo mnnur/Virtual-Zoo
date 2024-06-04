@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class Giraffe : MonoBehaviour
+public class Animal : MonoBehaviour
 {
     Animator anim;
     AnimalState animalState = AnimalState.IDLE;
@@ -14,22 +14,28 @@ public class Giraffe : MonoBehaviour
     [SerializeField] LayerMask groundLayer, playerLayer;
     Vector3 destinationPoint;
     bool walkPointSet;
-    [SerializeField] float range;
+    [SerializeField] float walkRange;
 
     public int hunger = 40;
 
     float hungerDecayTimer = 0f;
-    float hungerDecayDuration = 60f;
-    int hungerDecay = 10;
+    [SerializeField] float hungerDecayDuration = 60f;
+    [SerializeField] int hungerDecay = 10;
 
     // Time variables for state transitions
-    float idleTimer = 0f;
-    float idleDuration = 5f; // Time to stay idle (seconds)
+     float idleTimer = 0f;
+    [SerializeField] float idleDuration = 5f; // Time to stay idle (seconds)
+    float noiseTimer = 0f;
+    [SerializeField] float noiseDuration = 15f; 
     float walkToIdleTimer = 0f;
-    float walkToIdleDuration = 30f;
+    [SerializeField] float walkToIdleDuration = 30f;
 
-    [SerializeField] float sightRange = 5.0f;
+    [SerializeField] float sightRange = 10.0f;
     bool playerInSight;
+    [SerializeField] DietType dietType = DietType.OMNIVORE;
+    [SerializeField] AudioClip animalNoise;
+    [SerializeField] public AudioClip animalHappy;
+    public AudioSource animalAudio;
 
 
     // Start is called before the first frame update
@@ -39,18 +45,37 @@ public class Giraffe : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<Player>();
+        animalAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        idleTimer += Time.deltaTime;
-        walkToIdleTimer += Time.deltaTime;
+        playNoise();
+        mechanicHunger();
+        stateMachine();
+    }
+
+    void mechanicHunger(){
         hungerDecayTimer += Time.deltaTime;
         if(hungerDecayTimer >= hungerDecayDuration){
             hungerDecayTimer = 0;
             hunger -= hungerDecay;
         }
+    }
+
+        void playNoise(){
+        noiseTimer += Time.deltaTime;
+        if(noiseTimer >= noiseDuration){
+            noiseTimer = 0;
+            animalAudio.Stop();
+            animalAudio.PlayOneShot(animalNoise);
+        }
+    }
+
+    void stateMachine(){
+        idleTimer += Time.deltaTime;
+        walkToIdleTimer += Time.deltaTime;
         switch (animalState)
         {
             case AnimalState.IDLE:
@@ -97,8 +122,8 @@ public class Giraffe : MonoBehaviour
     }
 
     void SearchForDestination(){
-        float z = Random.Range(-range, range);
-        float x = Random.Range(-range, range);
+        float z = Random.Range(-walkRange, walkRange);
+        float x = Random.Range(-walkRange, walkRange);
 
         destinationPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 
