@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Animal : MonoBehaviour
 {
     Animator anim;
-    AnimalState animalState = AnimalState.IDLE;
+    public AnimalState animalState = AnimalState.IDLE;
 
     Player playerScript;
     GameObject player;
