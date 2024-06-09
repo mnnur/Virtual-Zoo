@@ -12,13 +12,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tiger
       objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 261.21
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.056
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -71,7 +75,7 @@ PrefabInstance:
       addedObject: {fileID: 5409208103469532935}
     - targetCorrespondingSourceObject: {fileID: 100036, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2690639328422737196}
+      addedObject: {fileID: 7072995678859477462}
     - targetCorrespondingSourceObject: {fileID: 100036, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7815292524018483922}
@@ -133,7 +137,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35, y: 0.67, z: 1}
+  m_Size: {x: 0.35, y: 0.6, z: 1}
   m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!114 &5409208103469532935
 MonoBehaviour:
@@ -153,8 +157,8 @@ MonoBehaviour:
   player: {fileID: 0}
   interactText: {fileID: 0}
   interactAction: {fileID: 4383594424666638698, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  animal: {fileID: 2690639328422737196}
---- !u!114 &2690639328422737196
+  animal: {fileID: 7072995678859477462}
+--- !u!114 &7072995678859477462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +167,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2816955582321955161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19b3dd489ba37d3489470e4c32491e86, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c8d7c35b1c0eea4191a539d29d136d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animalState: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -203,8 +208,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &2934149008274267284
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -214,7 +219,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2816955582321955161}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 5
   avoidancePriority: 50
@@ -224,7 +229,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.7
-  m_BaseOffset: 0
+  m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!82 &7713340594190381062
