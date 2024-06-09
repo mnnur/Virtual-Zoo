@@ -51,7 +51,9 @@ public class Animal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playNoise();
+        if(animalAudio != null && animalNoise != null){
+            playNoise();
+        }
         mechanicHunger();
         stateMachine();
     }
@@ -141,10 +143,10 @@ public class Animal : MonoBehaviour
     {
         this.animalState = animalState;
         if(animalState == AnimalState.WALKING){
-            anim.Play("animation_walk");
+
         }
         else if(animalState == AnimalState.IDLE){
-            anim.StopPlayback();
+
         }
     }
 }

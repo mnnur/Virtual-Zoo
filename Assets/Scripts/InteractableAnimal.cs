@@ -28,8 +28,10 @@ public class InteractableAnimal : MonoBehaviour
         Destroy(playerScript.holdedFood);
         playerScript.holdingFood = false;
         animal.hunger += playerScript.holdedFood.GetComponent<Food>().satiety;
+        if(animal.animalAudio != null){
         animal.animalAudio.Stop();
         animal.animalAudio.PlayOneShot(animal.animalHappy);
+        }
         Debug.Log("You interacted with " + gameObject.name + "!");
     }
 
