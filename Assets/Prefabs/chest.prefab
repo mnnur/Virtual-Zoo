@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 8034385702117656702}
   - component: {fileID: 4345772262040573149}
   - component: {fileID: 2519930584327174023}
-  - component: {fileID: 7598680745625502659}
   - component: {fileID: 2929690136606791666}
   - component: {fileID: 5888599459542456386}
   - component: {fileID: 583964515179440151}
-  - component: {fileID: 7316392889386442666}
+  - component: {fileID: 7623588618487521263}
   m_Layer: 0
   m_Name: chest
   m_TagString: Interactable
@@ -111,28 +110,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.022204436, y: 0.20277342, z: 0.000000029802322}
     m_Extent: {x: 0.23893118, y: 0.4027734, z: 0.20000002}
   m_DirtyAABB: 0
---- !u!64 &7598680745625502659
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7220413243687375556}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!135 &2929690136606791666
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -195,8 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   EventName: Event
---- !u!64 &7316392889386442666
-MeshCollider:
+--- !u!65 &7623588618487521263
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -213,7 +190,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 2a208bd7686b3a8498fa18ca1e40b820, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.4, y: 0.4, z: 0.40000004}
+  m_Center: {x: 0, y: 0, z: 0}

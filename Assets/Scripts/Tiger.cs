@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tiger : MonoBehaviour
+public class Tiger : Animal
 {
-    // Start is called before the first frame update
-    void Start()
+    void updateAnimalState(AnimalState animalState)
     {
-        
-    }
+        this.animalState = animalState;
+        if(animalState == AnimalState.WALKING){
+            
+        }
+        else if(animalState == AnimalState.IDLE){
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }
