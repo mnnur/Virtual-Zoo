@@ -22,7 +22,12 @@ public class Bull_Information : MonoBehaviour
 
             if (bullText != null)
             {
-                bullText.text = "INI BANTENG PDIP";
+                bullText.text = "Fakta Banteng:\n" +
+                        "- Banteng adalah hewan mamalia herbivora yang mirip dengan sapi.\n" +
+                        "- Mereka sering ditemukan di padang rumput dan hutan tropis.\n" +
+                        "- Banteng memiliki tanduk yang besar dan kuat.\n" +
+                        "- Mereka adalah hewan yang sangat kuat dan tangguh.\n" +
+                        "- Keluarga: Bovidae (suku sapi-sapian).";
                 Debug.Log("Text component found and text set successfully.");
             }
             else
