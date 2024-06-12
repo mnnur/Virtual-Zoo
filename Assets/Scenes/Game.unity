@@ -1848,6 +1848,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2519930584327174023, guid: ee9735b05c8c964469f59a7262bdc213, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4345772262040573149, guid: ee9735b05c8c964469f59a7262bdc213, type: 3}
       propertyPath: player
       value: 
@@ -8487,6 +8491,7 @@ GameObject:
   - component: {fileID: 1805963665}
   - component: {fileID: 1805963664}
   - component: {fileID: 1805963663}
+  - component: {fileID: 1805963667}
   m_Layer: 5
   m_Name: Exit Canvas
   m_TagString: Untagged
@@ -8577,6 +8582,25 @@ RectTransform:
   m_AnchoredPosition: {x: 255.75, y: 1.316}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1805963667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805963662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &1868269553
 GameObject:
   m_ObjectHideFlags: 0
@@ -9409,6 +9433,10 @@ PrefabInstance:
     - target: {fileID: 2816955582322117945, guid: 1a692ada7978663469caf5e8beee8900, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934149008274267284, guid: 1a692ada7978663469caf5e8beee8900, type: 3}
+      propertyPath: m_Acceleration
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5409208103469532935, guid: 1a692ada7978663469caf5e8beee8900, type: 3}
       propertyPath: player

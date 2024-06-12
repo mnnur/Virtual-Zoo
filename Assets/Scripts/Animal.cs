@@ -52,10 +52,7 @@ public class Animal : MonoBehaviour
     void Update()
     {
         if(animalAudio != null && animalNoise != null){
-            AnimalState prevAnimalState = animalState;
-            updateAnimalState(AnimalState.MAKESOUND);
             playNoise();
-            updateAnimalState(prevAnimalState);
         }
         mechanicHunger();
         stateMachine();
@@ -71,11 +68,14 @@ public class Animal : MonoBehaviour
 
     protected void playNoise(){
         noiseTimer += Time.deltaTime;
+        AnimalState prevAnimalState = animalState;
         if(noiseTimer >= noiseDuration){
+            updateAnimalState(AnimalState.MAKESOUND);
             noiseTimer = 0;
             animalAudio.Stop();
             animalAudio.PlayOneShot(animalNoise);
-        }
+            updateAnimalState(prevAnimalState);
+        }   
     }
 
     protected void stateMachine(){
@@ -144,7 +144,7 @@ public class Animal : MonoBehaviour
     }
 
 
-    protected void updateAnimalState(AnimalState animalState)
+    protected virtual void updateAnimalState(AnimalState animalState)
     {
         this.animalState = animalState;
         if(animalState == AnimalState.WALKING){

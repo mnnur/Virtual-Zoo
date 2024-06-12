@@ -21,12 +21,10 @@ public class Chest : Interactable
         Debug.Log("You interacted with " + gameObject.name + "!");
         if(isOpen){
             skinnedMeshRenderer.SetBlendShapeWeight(0, 0f);
-            chestUI.SetActive(false);
             isOpen = false;
         }else{
             skinnedMeshRenderer.SetBlendShapeWeight(0, 100f);
             isOpen = true;
-            chestUI.SetActive(true);
         }
     }
 }
