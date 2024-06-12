@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Animal : MonoBehaviour
 {
-    Animator anim;
+    protected Animator anim;
     public AnimalState animalState = AnimalState.IDLE;
 
     Player playerScript;
@@ -26,14 +26,14 @@ public class Animal : MonoBehaviour
      float idleTimer = 0f;
     [SerializeField] float idleDuration = 5f; // Time to stay idle (seconds)
     float noiseTimer = 0f;
-    [SerializeField] float noiseDuration = 15f; 
+    [SerializeField] float noiseDuration = 90f; 
     float walkToIdleTimer = 0f;
     [SerializeField] float walkToIdleDuration = 30f;
 
-    [SerializeField] float sightRange = 10.0f;
+    [SerializeField] float sightRange = 50.0f;
     bool playerInSight;
     [SerializeField] DietType dietType = DietType.OMNIVORE;
-    [SerializeField] AudioClip animalNoise;
+    [SerializeField] protected AudioClip animalNoise;
     [SerializeField] public AudioClip animalHappy;
     public AudioSource animalAudio;
 
@@ -58,7 +58,7 @@ public class Animal : MonoBehaviour
         stateMachine();
     }
 
-    void mechanicHunger(){
+    protected void mechanicHunger(){
         hungerDecayTimer += Time.deltaTime;
         if(hungerDecayTimer >= hungerDecayDuration){
             hungerDecayTimer = 0;
@@ -66,16 +66,19 @@ public class Animal : MonoBehaviour
         }
     }
 
-        void playNoise(){
+    protected void playNoise(){
         noiseTimer += Time.deltaTime;
+        AnimalState prevAnimalState = animalState;
         if(noiseTimer >= noiseDuration){
+            updateAnimalState(AnimalState.MAKESOUND);
             noiseTimer = 0;
             animalAudio.Stop();
             animalAudio.PlayOneShot(animalNoise);
-        }
+            updateAnimalState(prevAnimalState);
+        }   
     }
 
-    void stateMachine(){
+    protected void stateMachine(){
         idleTimer += Time.deltaTime;
         walkToIdleTimer += Time.deltaTime;
         switch (animalState)
@@ -104,6 +107,8 @@ public class Animal : MonoBehaviour
             case AnimalState.RUNNING:
                 break;
             case AnimalState.SLEEPING:
+                break;
+            case AnimalState.MAKESOUND:
                 break;
             default:
                 updateAnimalState(AnimalState.IDLE);
@@ -139,7 +144,7 @@ public class Animal : MonoBehaviour
     }
 
 
-    void updateAnimalState(AnimalState animalState)
+    protected virtual void updateAnimalState(AnimalState animalState)
     {
         this.animalState = animalState;
         if(animalState == AnimalState.WALKING){

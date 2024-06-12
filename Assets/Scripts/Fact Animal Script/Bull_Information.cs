@@ -9,12 +9,6 @@ public class Bull_Information : MonoBehaviour
     void Start()
     {
         GameObject bullTextObject = GameObject.Find("Bull Fact");
-        if (bullTextObject != null) {
-            Debug.Log("Aya Kaluar!");
-        }
-        else {
-            Debug.LogError("EWEH Kaluar");
-        }
 
         if (bullTextObject != null)
         {
@@ -34,10 +28,6 @@ public class Bull_Information : MonoBehaviour
             {
                 Debug.LogError("Text component not found on Bull Fact GameObject.");
             }
-        }
-        else
-        {
-            Debug.LogError("Bull Fact GameObject not found.");
         }
     }
 }

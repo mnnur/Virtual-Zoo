@@ -42,6 +42,6 @@ public class FreezeCameraRotation : MonoBehaviour
         {
             // Restore the original rotation of the camera
             mainCamera.transform.rotation = frozenRotation;
-        }
-    }
+        }
+    }
 }

@@ -6,9 +6,14 @@ public class Chest : Interactable
 {
     private bool isOpen = false;
     private SkinnedMeshRenderer skinnedMeshRenderer;
+    GameObject chestUI;
+    [SerializeField] Camera renderUICamera;
 
     void Awake(){
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+        chestUI = transform.GetChild(0).gameObject;
+        Canvas chestCanvas = chestUI.GetComponent<Canvas>();
+        chestCanvas.worldCamera = renderUICamera;
     }
 
     override public void Interact() //This function is meant to be overwritten depending on the interactable object.

@@ -31,6 +31,7 @@ Library: D:\Kuliah\Semester 6\IMK\prak\Virtual Zoo\Temp\BurstOutput\tempburstlib
 --assembly-defines=Unity.VisualEffectGraph.Runtime;
 --assembly-defines=Unity.XR.CoreUtils;
 --assembly-defines=Unity.XR.Interaction.Toolkit;
+--assembly-defines=Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator;
 --assembly-defines=Unity.XR.Interaction.Toolkit.Samples.StarterAssets;
 --assembly-defines=Unity.XR.Management;
 --assembly-defines=Unity.XR.OpenXR;
@@ -149,6 +150,7 @@ Library: D:\Kuliah\Semester 6\IMK\prak\Virtual Zoo\Temp\BurstOutput\tempburstlib
 --assembly-defines=Unity.VisualEffectGraph.Runtime;
 --assembly-defines=Unity.XR.CoreUtils;
 --assembly-defines=Unity.XR.Interaction.Toolkit;
+--assembly-defines=Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator;
 --assembly-defines=Unity.XR.Interaction.Toolkit.Samples.StarterAssets;
 --assembly-defines=Unity.XR.Management;
 --assembly-defines=Unity.XR.OpenXR;

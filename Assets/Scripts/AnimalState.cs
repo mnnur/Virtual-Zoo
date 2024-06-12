@@ -5,6 +5,7 @@ public enum AnimalState{
     WALKING,
     RUNNING,
     EATING,
-    SLEEPING
+    SLEEPING,
+    MAKESOUND
 
 }
