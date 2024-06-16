@@ -27,9 +27,14 @@ public class Player : MonoBehaviour
     private LineRenderer rightHandLineRenderer;
     private XRInteractorLineVisual rightHandXRInteractorLineVisual;
     private SortingGroup rightHandSortingGroup;
+    private AudioSource audioSource;
 
     public float debounceTime = 1.0f;
     private float lastButtonClickTime = 0.0f;
+     private Vector3 previousPosition;
+
+     public float playTime = 0.5f;
+public float pauseTime = 0.5f;
 
     void Start()
     {
@@ -43,14 +48,38 @@ public class Player : MonoBehaviour
         rightHandXRInteractorLineVisual = rightController.GetComponent<XRInteractorLineVisual>();
         rightHandSortingGroup = rightController.GetComponent<SortingGroup>();
 
+        audioSource = GetComponent<AudioSource>();
+
         ToggleRightRay();
         ToggleLeftRay();
+
+        previousPosition = transform.position;
     }
 
     void Update()
     {
         FoodInteraction();
         LineInteractor();
+    }
+
+     void PlayMovementSound()
+    {
+        if (transform.position != previousPosition) // Check for position change
+        {
+             StartCoroutine("PlayPauseCoroutine");
+            previousPosition = transform.position; // Update previous position
+        }
+    }
+
+    IEnumerator PlayPauseCoroutine()
+    {
+        while(true)
+        {
+            audioSource.Play();
+            yield return new WaitForSeconds(playTime);
+            audioSource.Pause(); // or beep.Stop()
+            yield return new WaitForSeconds(pauseTime);
+        }
     }
 
     void ToggleLeftRay()
