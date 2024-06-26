@@ -18,6 +18,7 @@ public class InteractableAnimal : MonoBehaviour
     [SerializeField] GameObject player;
     Player playerScript;
     [SerializeField] GameObject interactText; //Text that appears on the UI when this is the closest interactable.
+    [SerializeField] GameObject notInteractText;
     [SerializeField] InputActionReference interactAction; // Reference to the XR Interaction
     [SerializeField] Animal animal;
     InteractableAnimalDistanceList intDistList; //Reference to the script on player that keeps track of the lowest distance from player between interactables.
@@ -47,6 +48,7 @@ public class InteractableAnimal : MonoBehaviour
         {
             isClosestInteractable = false;
             interactText.SetActive(false);
+            notInteractText.SetActive(false);
         }
         if (playerIsCloseEnoughToInteractWithThis) //If the player is close enough to be able to interact with this object...
         {
@@ -56,7 +58,12 @@ public class InteractableAnimal : MonoBehaviour
                 if (!isClosestInteractable) //...and this is not already marked as the closest interactable...
                 {
                     isClosestInteractable = true; //...this needs to be marked as the closest interactable.
-                    interactText.SetActive(true); //...and the UI text showing that the player can interact needs to appear.
+                    if(playerScript.holdedFood.GetComponent<Food>().dietType == animal.dietType){
+                        interactText.SetActive(true); //...and the UI text showing that the player can interact needs to appear.
+                    }
+                    else if(playerScript.holdedFood.GetComponent<Food>().dietType != animal.dietType){
+                        notInteractText.SetActive(true); //...and the UI text showing that the player can interact needs to appear.
+                    }
                 }
             }
             if (distanceFromPlayer <= intDistList.lowestDistance || isClosestInteractable) //If this interactable's distance from the player is less than or equal to the lowest distance among interactables OR this is already marked as the closest interactable...
@@ -65,11 +72,20 @@ public class InteractableAnimal : MonoBehaviour
                 if (!isClosestInteractable) //If this interactable is not already marked as the closest interactable...
                 {
                     isClosestInteractable = true; //...then it needs to be marked as the closest.
-                    interactText.SetActive(true); //...and the UI text showing that the player can interact needs to appear.
+                    if(playerScript.holdedFood.GetComponent<Food>().dietType == animal.dietType){
+                        interactText.SetActive(true); //...and the UI text showing that the player can interact needs to appear.
+                    }
+                    else if(playerScript.holdedFood.GetComponent<Food>().dietType != animal.dietType){
+                        notInteractText.SetActive(true); //...and the UI text showing that the player can interact needs to appear.
+                    }
                 }
             }
         }
-        if (isClosestInteractable && interactAction.action.IsPressed() && Time.time >= lastInteractionTime + cooldownTime && playerScript.holdingFood)
+        if (isClosestInteractable && 
+        interactAction.action.IsPressed() && 
+        Time.time >= lastInteractionTime + cooldownTime && 
+        playerScript.holdingFood &&
+        playerScript.holdedFood.GetComponent<Food>().dietType == animal.dietType)
         {
             Interact();
             lastInteractionTime = Time.time; // Update the last interaction time

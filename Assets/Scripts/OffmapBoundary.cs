@@ -30,7 +30,7 @@ public class OffmapBoundary : MonoBehaviour
             || preventOffmap.transform.position.z < boundaryMinZ
             )
         {
-            preventOffmap.transform.position = new Vector3(0, 0.1f, 1);
+            preventOffmap.transform.position = new Vector3(0, 1.0f, 1);
         }
     }
 }

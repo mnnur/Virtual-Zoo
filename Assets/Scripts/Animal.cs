@@ -32,7 +32,7 @@ public class Animal : MonoBehaviour
 
     [SerializeField] float sightRange = 50.0f;
     bool playerInSight;
-    [SerializeField] DietType dietType = DietType.OMNIVORE;
+    public DietType dietType = DietType.OMNIVORE;
     [SerializeField] protected AudioClip animalNoise;
     [SerializeField] public AudioClip animalHappy;
     public AudioSource animalAudio;

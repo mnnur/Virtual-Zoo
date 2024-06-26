@@ -15,6 +15,8 @@ public class Bear : Animal
         }
         else if(animalState == AnimalState.IDLE){
             Debug.Log("Tiger idle");
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isWalking", false);
         }
         else if(animalState == AnimalState.RUNNING){
             anim.SetBool("isRunning", true);

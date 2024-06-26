@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    [SerializeField] DietType dietType = DietType.OMNIVORE;
+    public DietType dietType = DietType.OMNIVORE;
     public int satiety = 50;
 }
